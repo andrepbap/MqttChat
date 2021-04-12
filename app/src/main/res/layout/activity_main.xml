@@ -14,8 +14,31 @@
         app:spanCount="1"
         tools:listitem="@layout/message_row"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_input_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/text_input_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Insera uma mensagem aqui"
+        android:inputType="textLongMessage|text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_submit_message"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/conversation_recycler_view"
+        tools:text="Insira uma mensagem aqui"></com.google.android.material.textfield.TextInputEditText>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_submit_message"
+        android:layout_width="86dp"
+        android:layout_height="0dp"
+        android:text="Enviar"
+        app:layout_constraintStart_toEndOf="@id/text_input_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/conversation_recycler_view"
+        app:layout_constraintBottom_toBottomOf="@id/text_input_message"
+        ></com.google.android.material.button.MaterialButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
