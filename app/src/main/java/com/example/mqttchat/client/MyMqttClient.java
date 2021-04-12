@@ -35,15 +35,12 @@ public class MyMqttClient {
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    // We are connected
                     System.out.println("Conexao realizada com sucesso");
                     iMqttActionListener.onSuccess(asyncActionToken);
-//                    subscribeToMqttChannel();
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    // Something went wrong e.g. connection timeout or firewall problems
                     System.out.println("fail" + exception.getMessage());
                     iMqttActionListener.onFailure(asyncActionToken, exception);
                 }
@@ -53,35 +50,11 @@ public class MyMqttClient {
         }
     }
 
-//    IMqttMessageListener iMqttMessageListener = new IMqttMessageListener() {
-//        @Override
-//        public void messageArrived(String topic, MqttMessage message) throws Exception {
-//            System.out.println("message received" + message.toString());
-//
-//        }
-//    };
-
     public void subscribeToMqttChannel(IMqttMessageListener iMqttMessageListener) {
         String topic = "teste/tully";
         int qos = 1;
         try {
-            IMqttToken subToken = client.subscribe(topic, qos, iMqttMessageListener);
-
-            /*subToken.setActionCallback(new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    // The message was published
-                    Timber.d("Mqtt channel subscribe success");
-                }
-                @Override
-                public void onFailure(IMqttToken asyncActionToken,
-                                      Throwable exception) {
-                    Timber.d("Mqtt channel subscribe error %s",exception.getMessage());
-                    // The subscription could not be performed, maybe the user was not
-                    // authorized to subscribe on the specified topic e.g. using wildcards
-                }
-            });
-            */
+            client.subscribe(topic, qos, iMqttMessageListener);
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -97,7 +70,6 @@ public class MyMqttClient {
             subToken.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    // The message was published
                     System.out.println("mensagem enviada com sucesso " + asyncActionToken.getResponse().toString());
                 }
                 @Override

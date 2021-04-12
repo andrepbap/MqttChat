@@ -11,14 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mqttchat.R;
 import com.example.mqttchat.model.MessageModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConversationRecyclerAdapter extends RecyclerView.Adapter<ConversationRecyclerAdapter.MessageViewHolder> {
 
     private final List<MessageModel> messageList;
 
-    public ConversationRecyclerAdapter(List<MessageModel> messageList) {
-        this.messageList = messageList;
+    public ConversationRecyclerAdapter() {
+        this.messageList = new ArrayList<>();
     }
 
     @NonNull
@@ -38,6 +39,11 @@ public class ConversationRecyclerAdapter extends RecyclerView.Adapter<Conversati
     @Override
     public int getItemCount() {
         return messageList.size();
+    }
+
+    public void addMessage(MessageModel message) {
+        messageList.add(message);
+        notifyDataSetChanged();
     }
 
     class MessageViewHolder extends RecyclerView.ViewHolder {
